@@ -3,13 +3,12 @@ from typing import Union, Dict
 
 import requests
 
-from ghutils.cache import Cache, cacheout
-from ghutils.cache.memory_cache import MemoryCache
-from ghutils.error.messenger import AccessTokenError
-from ghutils.log import logger
-from ghutils.messenger.feishu import FeishuMessageType
-from ghutils.messenger.feishu.feishu import FeishuBotType, FeishuReceiveType
-from ghutils.messenger.feishu.message import build_message
+from ghkit.cache import Cache, cacheout
+from ghkit.cache.memory_cache import MemoryCache
+from ghkit.error.messenger import AccessTokenError
+from ghkit.log import logger
+from .feishu import FeishuMessageType, FeishuBotType, FeishuReceiveType
+from .message import build_message
 
 
 class FeishuAppBotMessageSender:

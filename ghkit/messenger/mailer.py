@@ -2,7 +2,7 @@ import smtplib
 from email.mime.text import MIMEText
 from typing import List
 
-from ghutils.error.messenger import LoginError, SendError
+from ghkit.error.messenger import LoginError, SendError
 
 
 def send(host: str, sender: str, password: str, recipients: List[str], subject: str = "", msg: str = "", msg_type="plain"):

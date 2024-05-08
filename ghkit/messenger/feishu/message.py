@@ -7,10 +7,10 @@ from typing import Dict, Union
 import httpx
 import requests
 
-from ghutils.error import SendError
-from ghutils.error.messenger import MessageTypeError
-from ghutils.log import logger
-from ghutils.messenger.feishu.feishu import gen_sign, FeishuMessageType, FeishuBotType
+from ghkit.error import SendError
+from ghkit.error.messenger import MessageTypeError
+from ghkit.log import logger
+from .feishu import gen_sign, FeishuMessageType, FeishuBotType
 
 
 class Message:

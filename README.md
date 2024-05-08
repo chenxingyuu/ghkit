@@ -1,6 +1,6 @@
-# ghutils
+# ghkit
 
-ghutils is short for "Grand Honor Utils", a common package for python projects.
+ghkit is short for "Grand Honor Kit", a common package for python projects.
 
 ## Content
 
@@ -13,7 +13,7 @@ ghutils is short for "Grand Honor Utils", a common package for python projects.
 ## Installation
 
 ```bash
-pip install ghutils
+pip install ghkit
 ```
 
 ## Code Framework
@@ -21,7 +21,7 @@ pip install ghutils
 ```text
 ├── demo                        # 例子
 ├── docs                        # 静态文件
-├── ghutils
+├── ghkit
 │   ├── cache                   # 缓存
 │   ├── database                # 数据库客户端
 │   ├── enum                    # 枚举

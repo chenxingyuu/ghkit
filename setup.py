@@ -6,19 +6,19 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 # 读取版本号
-__version__ = None
+__version__ = "0.0.1"
 
 try:
-    pkg_name = "ghutils"
+    pkg_name = "ghkit"
     lib_info_py = path.join(pkg_name, "__init__.py")
     lib_info_content = open(lib_info_py, "r", encoding="utf8").readlines()
     version_line = [line.strip() for line in lib_info_content if line.startswith("__version__")][0]
     exec(version_line)  # produce __version__
 except FileNotFoundError:
-    __version__ = "0.0.1"
+    pass
 
 setup(
-    name="ghutils",
+    name="ghkit",
     author="xingxing",
     author_email="chenxingyu@ndnu.edu.cn",
     version=__version__,

@@ -1,9 +1,8 @@
 from typing import Union, Dict
 
-from ghutils.log import logger
-from ghutils.messenger.feishu import FeishuMessageType
-from ghutils.messenger.feishu.feishu import FeishuBotType
-from ghutils.messenger.feishu.message import build_message
+from ghkit.log import logger
+from .feishu import FeishuMessageType, FeishuBotType
+from .message import build_message
 
 
 class FeishuCustomBotMessageSender:

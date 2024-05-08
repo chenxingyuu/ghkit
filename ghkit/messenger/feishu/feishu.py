@@ -3,7 +3,7 @@ import hashlib
 import hmac
 from enum import auto
 
-from ghutils.enum import GEnum
+from ghkit.enum import GEnum
 
 
 class FeishuReceiveType(GEnum):
