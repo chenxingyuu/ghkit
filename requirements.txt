@@ -11,3 +11,8 @@ redis==5.0.4
 # http客户端
 requests==2.31.0
 httpx==0.27.0
+
+# mysql客户端
+DBUtils==3.1.0
+pymysql==1.1.1
+
