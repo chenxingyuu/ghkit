@@ -1,54 +1,17 @@
 import json
 import time
 import uuid
-from http import HTTPStatus
 from typing import Dict, Union
 
 import httpx
 import requests
 
-from ghkit.error import SendError
 from ghkit.error.messenger import MessageTypeError
-from ghkit.log import logger
-from .feishu import gen_sign, FeishuMessageType, FeishuBotType
+from ghkit.messenger import Message
+from ghkit.messenger.feishu import FeishuMessageType, FeishuBotType, gen_sign
 
 
-class Message:
-    def __init__(self, msg_data: Dict) -> None:
-        self.msg_data = msg_data
-
-    @classmethod
-    def handler_response(cls, response):
-        """
-        处理HTTP响应，确保成功，并检查业务逻辑的错误。
-        :param response:
-        :return:
-        """
-
-        if response.status_code != HTTPStatus.OK:
-            logger.error(f"{response.text}")
-            response.raise_for_status()
-
-        data = response.json()
-        if data.get("code") != 0:
-            raise ValueError(data.get("msg", "Unknown error"))
-
-    @classmethod
-    def handle_send_error(cls, exception: Exception) -> None:
-        """
-        通用异常处理
-        :param exception:
-        :return:
-        """
-        logger.error(f"Message send error: {str(exception)}")
-        raise SendError("An error occurred while sending the message") from exception
-
-    def handle_secret(self, secret):
-        if secret:
-            timestamp = round(time.time())
-            sign = gen_sign(timestamp, secret)
-            self.msg_data["sign"] = sign
-            self.msg_data["timestamp"] = timestamp
+class FeishuMessage(Message):
 
     def handle_app_bot_msg(self, receive_id: str):
         """处理应用机器人消息"""
@@ -56,6 +19,13 @@ class Message:
             self.msg_data["receive_id"] = receive_id
             self.msg_data["uuid"] = uuid.uuid4().hex
             self.msg_data["content"] = json.dumps(self.msg_data["content"])
+
+    def handle_secret(self, secret):
+        if secret:
+            timestamp = round(time.time())
+            sign = gen_sign(timestamp, secret)
+            self.msg_data["sign"] = sign
+            self.msg_data["timestamp"] = timestamp
 
     def send(self, url: str, receive_id: str = None, secret: str = None, timeout: int = 0, **kwargs) -> None:
         """
@@ -106,7 +76,7 @@ class Message:
         return json.dumps(self.msg_data, ensure_ascii=False)
 
 
-class TextMessage(Message):
+class TextMessage(FeishuMessage):
     """文本消息"""
 
     def __init__(self, text: str) -> None:
@@ -119,7 +89,7 @@ class TextMessage(Message):
         super().__init__(msg_data)
 
 
-class PostMessage(Message):
+class PostMessage(FeishuMessage):
     """富文本消息"""
 
     def __init__(self, content: Dict, bot_type: FeishuBotType) -> None:
@@ -132,7 +102,7 @@ class PostMessage(Message):
         super().__init__(msg_data)
 
 
-class ImageMessage(Message):
+class ImageMessage(FeishuMessage):
     """图片消息"""
 
     def __init__(self, image_key: str) -> None:
@@ -145,7 +115,7 @@ class ImageMessage(Message):
         super().__init__(msg_data)
 
 
-class ShareChatMessage(Message):
+class ShareChatMessage(FeishuMessage):
     """群名片消息"""
 
     def __init__(self, chat_id: str, bot_type: FeishuBotType) -> None:
@@ -159,7 +129,7 @@ class ShareChatMessage(Message):
         super().__init__(msg_data)
 
 
-class CardMessage(Message):
+class CardMessage(FeishuMessage):
     """卡片消息"""
 
     def __init__(self, card: Dict, bot_type: FeishuBotType) -> None:

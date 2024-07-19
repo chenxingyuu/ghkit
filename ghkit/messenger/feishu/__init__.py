@@ -1,1 +1,1 @@
-from .feishu import FeishuReceiveType, FeishuMessageType, FeishuBotType
+from .feishu import FeishuReceiveType, FeishuMessageType, FeishuBotType, gen_sign
