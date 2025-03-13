@@ -4,6 +4,8 @@
 loguru~=0.6.0
 
 # -----------------------【optional】-----------------------
+# Web框架与相关工具
+fastapi~=0.108.0
 
 # redis客户端
 redis==5.0.4
@@ -16,3 +18,6 @@ httpx==0.27.0
 DBUtils==3.1.0
 pymysql==1.1.1
 
+# ORM
+tortoise-orm==0.21.5
+pydantic~=2.9.2
