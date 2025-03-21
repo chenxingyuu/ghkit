@@ -32,7 +32,7 @@ class FeishuCustomBotMessageSender:
         """
         msg = build_message(message, message_type, FeishuBotType.CUSTOM)
         msg.send(url=self.webhook_url, secret=self.secret, timeout=timeout)
-        logger.info(f"Message sent: {msg}")
+        logger.debug(f"Message sent: {msg}")
 
     async def async_send(
         self,
@@ -49,4 +49,4 @@ class FeishuCustomBotMessageSender:
         """
         msg = build_message(message, message_type, FeishuBotType.CUSTOM)
         await msg.async_send(url=self.webhook_url, secret=self.secret, timeout=timeout)
-        logger.info(f"Message sent: msg:{msg}")
+        logger.debug(f"Message sent: msg:{msg}")

@@ -32,7 +32,7 @@ class DingTalkCustomBotMessageSender:
         """
         msg = build_message(message, message_type)
         msg.send(token=self.token, secret=self.secret, timeout=timeout)
-        logger.info(f"Message sent: {msg}")
+        logger.debug(f"Message sent: {msg}")
 
     async def async_send(
         self,
@@ -49,4 +49,4 @@ class DingTalkCustomBotMessageSender:
         """
         msg = build_message(message, message_type)
         await msg.async_send(url=self.token, secret=self.secret, timeout=timeout)
-        logger.info(f"Message sent: msg:{msg}")
+        logger.debug(f"Message sent: msg:{msg}")
