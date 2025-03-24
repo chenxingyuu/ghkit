@@ -1,6 +1,3 @@
-from .redis_client import RedisClient, AsyncRedisClient
+from .redis_client import AsyncRedisClient, RedisClient
 
-__all__ = [
-    "RedisClient",
-    "AsyncRedisClient"
-]
+__all__ = ["RedisClient", "AsyncRedisClient"]

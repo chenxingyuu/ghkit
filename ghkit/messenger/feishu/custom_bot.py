@@ -1,11 +1,12 @@
-from typing import Union, Dict
+from typing import Dict, Union
 
 from ghkit.log import logger
-from .feishu import FeishuMessageType, FeishuBotType
+
+from .feishu import FeishuBotType, FeishuMessageType
 from .message import build_message
 
 
-class FeishuCustomBotMessageSender:
+class FeishuCustomBot:
     """飞书自定义机器人消息发送"""
 
     def __init__(self, webhook_url: str, secret: str = None) -> None:
@@ -21,7 +22,7 @@ class FeishuCustomBotMessageSender:
         self,
         message: Union[str, Dict],
         message_type: FeishuMessageType = FeishuMessageType.TEXT,
-        timeout: int = 30
+        timeout: int = 30,
     ) -> None:
         """
         同步发送消息
@@ -38,7 +39,7 @@ class FeishuCustomBotMessageSender:
         self,
         message: Union[str, Dict],
         message_type: FeishuMessageType = FeishuMessageType.TEXT,
-        timeout: int = 30
+        timeout: int = 30,
     ) -> None:
         """
         异步发送消息

@@ -38,6 +38,7 @@ class FeishuBotType(GEnum):
     """
     飞书机器人类型
     """
+
     CUSTOM = auto()
     APPLICATION = auto()
 
@@ -46,8 +47,8 @@ def gen_sign(timestamp: int, secret: str):
     """生成签名"""
 
     # 拼接timestamp和secret
-    string_to_sign = '{}\n{}'.format(timestamp, secret)
+    string_to_sign = "{}\n{}".format(timestamp, secret)
     hmac_code = hmac.new(string_to_sign.encode("utf-8"), digestmod=hashlib.sha256).digest()
     # 对结果进行base64处理
-    sign = base64.b64encode(hmac_code).decode('utf-8')
+    sign = base64.b64encode(hmac_code).decode("utf-8")
     return sign

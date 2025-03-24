@@ -2,10 +2,18 @@ import smtplib
 from email.mime.text import MIMEText
 from typing import List
 
-from ghkit.error.messenger import LoginError, SendError
+from ghkit.messenger.error import LoginError, SendError
 
 
-def send(host: str, sender: str, password: str, recipients: List[str], subject: str = "", msg: str = "", msg_type="plain"):
+def send(
+    host: str,
+    sender: str,
+    password: str,
+    recipients: List[str],
+    subject: str = "",
+    msg: str = "",
+    msg_type="plain",
+):
     """
     发送消息到邮箱
     :param host:

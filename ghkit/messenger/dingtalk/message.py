@@ -1,15 +1,15 @@
 import json
 import time
 from http import HTTPStatus
-from typing import Union, Dict
+from typing import Dict, Union
 
 import httpx
 import requests
 
-from ghkit.error.messenger import MessageTypeError
 from ghkit.log import logger
 from ghkit.messenger import Message
 from ghkit.messenger.dingtalk import DingTalkMessageType, gen_sign
+from ghkit.messenger.error import MessageTypeError
 
 
 class DingTalkMessage(Message):
@@ -58,7 +58,7 @@ class DingTalkMessage(Message):
                 params=self.req_params,
                 json=self.msg_data,
                 timeout=timeout,
-                **kwargs
+                **kwargs,
             )
             self.handler_response(response)
         except Exception as e:
@@ -77,10 +77,7 @@ class DingTalkMessage(Message):
             self.handle_secret(secret)
             async with httpx.AsyncClient() as client:
                 response = await client.post(
-                    url=self.webhook_url,
-                    json=self.msg_data,
-                    timeout=timeout,
-                    **kwargs
+                    url=self.webhook_url, json=self.msg_data, timeout=timeout, **kwargs
                 )
                 self.handler_response(response)
         except Exception as e:
@@ -92,12 +89,7 @@ class DingTalkMessage(Message):
 
 class TextMessage(DingTalkMessage):
     def __init__(self, text: str) -> None:
-        msg_data = {
-            "msgtype": "text",
-            "text": {
-                "content": text
-            }
-        }
+        msg_data = {"msgtype": "text", "text": {"content": text}}
         super().__init__(msg_data)
 
 

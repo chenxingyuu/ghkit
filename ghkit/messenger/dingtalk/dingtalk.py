@@ -17,9 +17,9 @@ class DingTalkMessageType(GEnum):
 def gen_sign(timestamp: int, secret: str):
     """生成签名"""
 
-    secret_enc = secret.encode('utf-8')
-    string_to_sign = '{}\n{}'.format(timestamp, secret)
-    string_to_sign_enc = string_to_sign.encode('utf-8')
+    secret_enc = secret.encode("utf-8")
+    string_to_sign = "{}\n{}".format(timestamp, secret)
+    string_to_sign_enc = string_to_sign.encode("utf-8")
     hmac_code = hmac.new(secret_enc, string_to_sign_enc, digestmod=hashlib.sha256).digest()
     sign = quote_plus(base64.b64encode(hmac_code))
 

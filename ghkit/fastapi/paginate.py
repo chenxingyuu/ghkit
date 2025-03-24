@@ -24,7 +24,7 @@ class PageModel(BaseModel, Generic[T]):
 
 
 @dataclass
-class PaginationParams:
+class PageParams:
     page: int = Query(1, alias="page", ge=1)
     limit: int = Query(10, alias="limit", ge=1)
     sort_by: List[str] = Query(None, alias="sort_by")
@@ -52,7 +52,7 @@ class PaginationParams:
 
 async def paginate(
     queryset: QuerySet[T],
-    pagination: PaginationParams,
+    pagination: PageParams,
     schema: Type[PydanticModel],
 ) -> PageModel[T]:
     total = await queryset.count()

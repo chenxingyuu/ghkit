@@ -1,4 +1,4 @@
-from typing import Union, Dict
+from typing import Dict, Union
 
 from ghkit.log import logger
 from ghkit.messenger.dingtalk.dingtalk import DingTalkMessageType
@@ -21,7 +21,7 @@ class DingTalkCustomBotMessageSender:
         self,
         message: Union[str, Dict],
         message_type: DingTalkMessageType = DingTalkMessageType.TEXT,
-        timeout: int = 30
+        timeout: int = 30,
     ) -> None:
         """
         同步发送消息
@@ -38,7 +38,7 @@ class DingTalkCustomBotMessageSender:
         self,
         message: Union[str, Dict],
         message_type: DingTalkMessageType = DingTalkMessageType.TEXT,
-        timeout: int = 30
+        timeout: int = 30,
     ) -> None:
         """
         异步发送消息

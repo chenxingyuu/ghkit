@@ -311,7 +311,12 @@ class MySQLClient:
         return self.exec(sql, values, debug_sql=debug_sql, conn=conn)
 
     def update(
-        self, table: str, sets: Dict = None, conds: Dict = None, debug_sql: bool = True, conn: PooledSharedDBConnection = None
+        self,
+        table: str,
+        sets: Dict = None,
+        conds: Dict = None,
+        debug_sql: bool = True,
+        conn: PooledSharedDBConnection = None,
     ):
         """更新行
 
@@ -336,7 +341,13 @@ class MySQLClient:
 
         return self.exec(sql, s_params + c_params, debug_sql=debug_sql, conn=conn)
 
-    def delete(self, table: str, conds: Dict = None, debug_sql: bool = True, conn: PooledSharedDBConnection = None):
+    def delete(
+        self,
+        table: str,
+        conds: Dict = None,
+        debug_sql: bool = True,
+        conn: PooledSharedDBConnection = None,
+    ):
         """删除行
 
         Args:
@@ -461,7 +472,9 @@ class MySQLClient:
             return result
         except Exception as e:
             if self._log:
-                self._log.error(f"exec sql error: {e}, sql({self._rm_line_break(sql)}), params({params})")
+                self._log.error(
+                    f"exec sql error: {e}, sql({self._rm_line_break(sql)}), params({params})"
+                )
             raise
         finally:
             cursor and cursor.close()

@@ -25,9 +25,7 @@ setup(
     packages=find_packages(),
     long_description=long_description,
     long_description_content_type="text/markdown",
-    install_requires=[
-        "loguru~=0.6.0"
-    ],
+    install_requires=["loguru~=0.6.0"],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

@@ -2,8 +2,8 @@ import json
 from http import HTTPStatus
 from typing import Dict
 
-from ghkit.error import SendError
 from ghkit.log import logger
+from ghkit.messenger.error import SendError
 
 
 class Message:
@@ -36,7 +36,9 @@ class Message:
         logger.error(f"Message send error: {str(exception)}")
         raise SendError("An error occurred while sending the message") from exception
 
-    def send(self, url: str, receive_id: str = None, secret: str = None, timeout: int = 0, **kwargs) -> None:
+    def send(
+        self, url: str, receive_id: str = None, secret: str = None, timeout: int = 0, **kwargs
+    ) -> None:
         """
         同步发送消息
         :param url:
@@ -45,9 +47,11 @@ class Message:
         :param timeout:
         :return:
         """
-        raise NotImplementedError
+        raise NotImplementedError("Subclasses must implement send()")
 
-    async def async_send(self, url: str, receive_id: str = None, secret: str = None, timeout: int = 0, **kwargs) -> None:
+    async def async_send(
+        self, url: str, receive_id: str = None, secret: str = None, timeout: int = 0, **kwargs
+    ) -> None:
         """
         异步发送消息
         :param url:

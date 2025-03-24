@@ -1,4 +1,4 @@
-from . import Cache
+from .base import Cache
 
 
 class RedisCache(Cache):

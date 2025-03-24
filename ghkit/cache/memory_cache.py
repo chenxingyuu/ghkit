@@ -1,7 +1,7 @@
 import time
 from collections import OrderedDict
 
-from . import Cache
+from .base import Cache
 
 
 class MemoryCache(Cache):
@@ -18,10 +18,7 @@ class MemoryCache(Cache):
     def set(self, key, value, ttl=None):
         if len(self._cache) >= self._cache_size:
             self._cache.popitem(last=False)
-        self._cache[key] = {
-            "value": value,
-            "ttl": time.time() + ttl if ttl else None
-        }
+        self._cache[key] = {"value": value, "ttl": time.time() + ttl if ttl else None}
 
     def delete(self, key):
         self._cache.pop(key, None)

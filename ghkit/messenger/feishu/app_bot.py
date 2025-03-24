@@ -1,22 +1,25 @@
 from http import HTTPStatus
-from typing import Union, Dict
+from typing import Dict, Union
 
 import requests
 
 from ghkit.cache import Cache, cacheout
 from ghkit.cache.memory_cache import MemoryCache
-from ghkit.error.messenger import AccessTokenError
 from ghkit.log import logger
-from .feishu import FeishuMessageType, FeishuBotType, FeishuReceiveType
+
+from ..error import AccessTokenError
+from .feishu import FeishuBotType, FeishuMessageType, FeishuReceiveType
 from .message import build_message
 
 
-class FeishuAppBotMessageSender:
+class FeishuAppBot:
     """飞书应用机器人消息发送"""
 
     # 飞书获取应用鉴权凭证接口
     # 接口文档: https://open.feishu.cn/document/server-docs/authentication-management/access-token/tenant_access_token_internal
-    TENANT_ACCESS_TOKEN_INTERNAL_API = "https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal"
+    TENANT_ACCESS_TOKEN_INTERNAL_API = (
+        "https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal"
+    )
 
     # 飞书发送消息接口
     # 接口文档: https://open.feishu.cn/document/server-docs/im-v1/message/create
@@ -28,9 +31,7 @@ class FeishuAppBotMessageSender:
         self.cache = cache or MemoryCache()
 
         self.get_tenant_access_token = cacheout(
-            cache=self.cache,
-            ttl=7200,
-            key_name="tenant_access_token"
+            cache=self.cache, ttl=7200, key_name="tenant_access_token"
         )(self.get_tenant_access_token)
 
     @classmethod
@@ -66,7 +67,7 @@ class FeishuAppBotMessageSender:
                     "app_id": self.app_id,
                     "app_secret": self.app_secret,
                 },
-                timeout=30
+                timeout=30,
             )
             return self.expect_token(response)
         except Exception as e:
@@ -97,8 +98,8 @@ class FeishuAppBotMessageSender:
             timeout=timeout,
             params={"receive_id_type": receive_id_type.value},
             headers={
-                'Content-Type': 'application/json',
-                'Authorization': f'Bearer {self.get_tenant_access_token()}'
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {self.get_tenant_access_token()}",
             },
         )
 
@@ -126,7 +127,7 @@ class FeishuAppBotMessageSender:
             timeout=timeout,
             params={"receive_id_type": receive_id_type.value},
             headers={
-                'Content-Type': 'application/json',
-                'Authorization': f'Bearer {self.get_tenant_access_token()}'
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {self.get_tenant_access_token()}",
             },
         )

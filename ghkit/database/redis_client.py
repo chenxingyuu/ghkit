@@ -60,6 +60,3 @@ class AsyncRedisClient(aioredis.Redis):
             socket_keepalive=socket_keepalive,
             **kwargs,
         )
-
-
-
