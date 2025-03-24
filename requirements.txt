@@ -21,3 +21,12 @@ pymysql==1.1.1
 # ORM
 tortoise-orm==0.21.5
 pydantic~=2.9.2
+
+# -----------------------【dev】-----------------------
+# 测试框架
+pytest==8.3.5
+pytest-cov==6.0.0
+pytest-asyncio==0.25.3
+
+# pre commit
+pre-commit==4.2.0
