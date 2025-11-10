@@ -19,6 +19,7 @@ def client(app):
 
 def test_error_handling(app, client):
     """测试错误处理"""
+
     @app.get("/test")
     async def test_endpoint():
         raise HTTPException(status_code=404, detail="Not Found")

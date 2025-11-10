@@ -16,8 +16,39 @@ ghkit 是 "Grand Honor Kit" 的缩写，是一个 Python 项目通用工具包�
 
 ## 安装
 
+### 使用 pip（推荐）
+
 ```bash
 pip install ghkit
+```
+
+### 使用 uv
+
+```bash
+# 安装 uv（如果还没有安装）
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# 安装 ghkit
+uv pip install ghkit
+```
+
+### 开发安装
+
+使用 uv 进行开发安装：
+
+```bash
+# 克隆项目
+git clone <repository-url>
+cd ghkit
+
+# 安装项目及开发依赖
+uv sync
+
+# 或者只安装测试依赖
+uv sync --extra test
+
+# 或者安装所有可选依赖（包括 demo 依赖）
+uv sync --all-extras
 ```
 
 ## 项目结构
@@ -36,7 +67,8 @@ pip install ghkit
 ├── CHANGELOG.md                # 版本更新日志
 ├── LICENSE                     # 开源协议
 ├── README.md                   # 项目说明
-└── requirements.txt            # 项目依赖
+├── pyproject.toml              # 项目配置和依赖管理
+└── uv.lock                     # uv 依赖锁定文件
 ```
 
 ## 版本历史
@@ -49,9 +81,14 @@ pip install ghkit
 
 项目使用 pytest 作为测试框架。以下是运行测试的常用命令：
 
-1. 安装测试依赖：
+1. 安装测试依赖（使用 uv）：
 ```bash
-pip install -r requirements.txt
+uv sync --extra test
+```
+
+或者使用 pip：
+```bash
+pip install -e ".[test]"
 ```
 
 2. 运行所有测试：

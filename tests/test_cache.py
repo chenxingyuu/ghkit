@@ -1,8 +1,8 @@
-from unittest.mock import MagicMock, AsyncMock
+from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
-from ghkit.cache import MemoryCache, RedisCache, AsyncRedisCache
+from ghkit.cache import AsyncRedisCache, MemoryCache, RedisCache
 
 
 def test_memory_cache():
@@ -21,6 +21,7 @@ def test_memory_cache():
     cache.set("expire_key", "expire_value", ttl=1)
     assert cache.get("expire_key") == "expire_value"
     import time
+
     time.sleep(1.1)
     assert cache.get("expire_key") is None
 

@@ -41,4 +41,4 @@ class Cache:
 
             return wrapper
 
-        return decorator 
+        return decorator

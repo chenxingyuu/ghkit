@@ -1,9 +1,9 @@
-import pytest
 from ghkit.enum import GEnum
 
 
 class EnumTest(GEnum):
     """测试枚举"""
+
     A = 1, "选项A"
     B = 2, "选项B"
     C = 3, "选项C"
@@ -25,11 +25,7 @@ def test_enum_desc():
 
 def test_enum_to_dict():
     """测试枚举转字典"""
-    assert EnumTest.to_dict() == {
-        1: "选项A",
-        2: "选项B",
-        3: "选项C"
-    }
+    assert EnumTest.to_dict() == {1: "选项A", 2: "选项B", 3: "选项C"}
 
 
 def test_enum_to_list():
@@ -37,7 +33,7 @@ def test_enum_to_list():
     assert EnumTest.to_list() == [
         {"value": 1, "desc": "选项A"},
         {"value": 2, "desc": "选项B"},
-        {"value": 3, "desc": "选项C"}
+        {"value": 3, "desc": "选项C"},
     ]
 
 
