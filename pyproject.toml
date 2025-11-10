@@ -22,25 +22,25 @@ classifiers = [
 ]
 keywords = ["toolkit", "cache", "database", "logging", "messenger", "fastapi"]
 dependencies = [
-    "dbutils==3.1.2",
-    "fastapi~=0.115.12",
-    "httpx==0.28.1",
-    "loguru~=0.7.3",
-    "pydantic~=2.12.4",
-    "pymysql==1.1.2",
-    "redis==7.0.1",
-    "requests==2.32.5",
-    "tortoise-orm==0.25.1",
+    "dbutils>=3.1.2",
+    "fastapi>=0.121.1",
+    "httpx>=0.28.1",
+    "loguru>=0.7.3",
+    "pydantic>=2.12.4",
+    "pymysql>=1.1.2",
+    "redis>=7.0.1",
+    "requests>=2.32.5",
+    "tortoise-orm>=0.25.1",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pre-commit==4.4.0",
+    "pre-commit>=4.4.0",
 ]
 test = [
-    "pytest==9.0.0",
+    "pytest>=9.0.0",
     "pytest-asyncio>=0.23.3",
-    "pytest-cov==7.0.0",
+    "pytest-cov>=7.0.0",
 ]
 demo = [
     "uvicorn>=0.15.0",
