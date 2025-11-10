@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ghkit"
-version = "0.0.5"
+version = "0.0.6"
 description = "Grand Honor Kit - 一个 Python 项目通用工具包，提供缓存、数据库、日志、消息通知等功能"
 readme = "README.md"
 requires-python = ">=3.10"
