@@ -14,9 +14,9 @@ class InterceptHandler(logging.Handler):
         logger_opt.log(loguru_level, record.getMessage())
 
 
-def setup_logging():
+def setup_logging(level: int = logging.DEBUG):
     """替换 FastAPI & Uvicorn & Tortoise-ORM 的 logging 配置"""
-    logging.basicConfig(handlers=[InterceptHandler()], level=logging.DEBUG)
+    logging.basicConfig(handlers=[InterceptHandler()], level=level)
 
 
 LOG = logger
