@@ -31,13 +31,16 @@ jobs:
         with:
           python-version: "3.12.11"
       
+      - name: Install dependencies
+        run: |
+          uv sync --all-extras
+
       - name: Build package
         run: |
           uv build
       
       - name: Check package
         run: |
-          uv pip install twine
           uv run twine check dist/*
       
       - name: Publish to PyPI
